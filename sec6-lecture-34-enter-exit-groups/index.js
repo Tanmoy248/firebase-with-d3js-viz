@@ -1,6 +1,13 @@
-const svg = d3.select("svg")
+// the idea is to generate the entire svg html via javascript.
+// Hence just get the canvass and append svg via d3
 
-d3.json("http://localhost:9000/").then(data => {
+const svg = d3.select(".canvas")
+                .append('svg')
+                .attr("width", 600)
+                .attr("height", 600);
+
+
+d3.json('planets.json').then(data => {
     const circs = svg.selectAll('circle')
     .data(data)
 
@@ -21,6 +28,3 @@ d3.json("http://localhost:9000/").then(data => {
     .attr("fill", d => d.fill)
 }
 )
-
-d3.select("body").transition()
-    .style("background-color", "black")
